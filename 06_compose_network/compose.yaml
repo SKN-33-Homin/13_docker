@@ -1,0 +1,13 @@
+name: docker-lesson
+
+services:
+  web:
+    build: . # 현재 폴더 Dockerfile은 이미지로 생성
+    image: lesson-nginx:v2
+    ports:
+      - "127.0.0.1:8080:80"
+    environment:
+      LESSON_TOPIC: "compose-network"
+  tester:
+    image: busybox:1.37 # 리눅스 명령어 모음
+    command: ["sleep", "3600"]

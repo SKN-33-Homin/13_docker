@@ -1,0 +1,18 @@
+name: docker-lesson
+
+services:
+  web:
+    build: .
+    image: lesson-nginx:v2
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - "./index.html:/usr/share/nginx/html/index.html:ro"
+  tester:
+    image: busybox:1.37
+    command: ["sleep", "3600"]
+    volumes:
+      - "lesson_data:/data"
+
+volumes:
+  lesson_data:
